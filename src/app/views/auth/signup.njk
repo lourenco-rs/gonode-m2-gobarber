@@ -1,0 +1,23 @@
+{% extends "_layouts/auth.njk" %}
+
+{% block body %}
+  <form action="/singup" method="post">
+    <label for="avatar">
+      <img src="/images/avatar.svg" height="24">
+    </label>
+
+    <input type="file" name="avatar" id="avatar">
+
+    <input type="text" name="name" placeholder="Nome completo">
+    <input type="email" name="email" placeholder="Seu email">
+    <input type="password" name="password" placeholder="Senha secreta">
+
+    <label for="provider">
+      <input type="checkbox" id="provider" name="provider" value="1">
+      Sou cabelereiro
+    </label>
+
+    <button type="submit">Criar conta</button>
+    <a href="/">Já possuo conta</a>
+  </form>
+{% endblock %}
