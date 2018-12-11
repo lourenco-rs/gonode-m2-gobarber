@@ -18,6 +18,9 @@ routes.post('/signup', upload.single('avatar'), UserController.store)
 routes.get('/signup', UserController.create)
 
 // só para testar o login
-routes.get('/app/dashboard', (req, res) => res.render('dashboard'))
+routes.get('/app/dashboard', (req, res) => {
+  console.log('session: ', req.session.user)
+  res.render('dashboard')
+})
 
 module.exports = routes
