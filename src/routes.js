@@ -4,18 +4,19 @@ const upload = require('multer')(multerConfig)
 
 const routes = express.Router()
 
+const authMiddleware = require('./app/middlewares/auth')
+const guestMiddleware = require('./app/middlewares/guest')
+
 const UserController = require('./app/controllers/UserController')
 const SessionController = require('./app/controllers/SessionController')
 
-routes.get('/', SessionController.create)
+routes.get('/', guestMiddleware, SessionController.create)
 routes.post('/signin', SessionController.store)
 
-/**
- * upload.single('avatar') - informa que será feito uploade de apenas uma imagem
- * e que o nome do input é avatar
- */
+routes.get('/signup', guestMiddleware, UserController.create)
 routes.post('/signup', upload.single('avatar'), UserController.store)
-routes.get('/signup', UserController.create)
+
+routes.use('/app', authMiddleware)
 
 // só para testar o login
 routes.get('/app/dashboard', (req, res) => {

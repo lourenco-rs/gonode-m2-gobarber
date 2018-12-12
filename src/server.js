@@ -23,7 +23,7 @@ class App {
         store: new FileStore({
           path: path.resolve(__dirname, '..', 'tmp', 'sessions')
         }),
-        saveUninitialized: true // teste
+        saveUninitialized: true
       })
     )
   }
